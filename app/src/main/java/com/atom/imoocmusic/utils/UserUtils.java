@@ -1,10 +1,12 @@
 package com.atom.imoocmusic.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.atom.imoocmusic.activitys.LoginActivity;
 import com.blankj.utilcode.util.RegexUtils;
 
 public class UserUtils {
@@ -21,11 +23,18 @@ public class UserUtils {
             return false;
         }
 
-        if (TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(password)) {
             Toast.makeText(context, "请输入密码", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         return true;
+    }
+
+    /**
+     * 退出登录
+     */
+    public static void logOut(Context context) {
+        context.startActivity(new Intent(context, LoginActivity.class));
     }
 }

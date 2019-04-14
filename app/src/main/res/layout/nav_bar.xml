@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/navBarTitleSize"
         android:textColor="@android:color/white"
-        android:text="慕课音乐"
+        android:text="Fire music"
         android:layout_gravity="center"/>
 
     <ImageView
