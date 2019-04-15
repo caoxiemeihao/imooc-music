@@ -1,5 +1,6 @@
 package com.atom.imoocmusic.activitys;
 
+import android.content.Intent;
 import android.icu.util.Measure;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +26,7 @@ public class MeActivity extends BaseActivity {
      * 修改密码
      */
     public void onChangeClick(View view) {
-
+        startActivity(new Intent(MeActivity.this, ChangePassword.class));
     }
 
     /**
