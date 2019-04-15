@@ -1,11 +1,13 @@
 package com.atom.imoocmusic.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.atom.imoocmusic.R;
 import com.atom.imoocmusic.activitys.LoginActivity;
 import com.blankj.utilcode.util.RegexUtils;
 
@@ -34,7 +36,12 @@ public class UserUtils {
     /**
      * 退出登录
      */
-    public static void logOut(Context context) {
-        context.startActivity(new Intent(context, LoginActivity.class));
+    public static void logout(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        // 添加 Intent 标识符 -> 清理 Task 栈 -> 新生成一个 Task 栈
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+        // 手动生成的 Task 栈，需要手动还原 Activity 切换的过度动画 | 一定要放在 startActivity 后面
+        ((Activity)context).overridePendingTransition(R.anim.open_enter, R.anim.open_exit);
     }
 }

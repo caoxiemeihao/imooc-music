@@ -32,6 +32,6 @@ public class MeActivity extends BaseActivity {
      * 退出登录
      */
     public void onLogoutClick(View view) {
-        UserUtils.logOut(MeActivity.this);
+        UserUtils.logout(MeActivity.this);
     }
 }
