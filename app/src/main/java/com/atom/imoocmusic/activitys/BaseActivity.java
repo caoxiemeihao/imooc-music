@@ -32,12 +32,15 @@ public class BaseActivity extends Activity {
      */
     protected void initNavBar(boolean isShowBack, String title, boolean isShowMe) {
 
+        // back 按钮
         mIvBack = this.fd(R.id.iv_back);
+        // title
         mTvTitle = fd(R.id.tv_title);
+        // 个人中心图标
         mIvMe = fd(R.id.iv_me);
 
         mIvBack.setVisibility(isShowBack ? View.VISIBLE : View.GONE);
-        mIvMe.setVisibility(isShowBack ? View.VISIBLE : View.GONE);
+        mIvMe.setVisibility(isShowMe ? View.VISIBLE : View.GONE);
         mTvTitle.setText(title);
 
         mIvBack.setOnClickListener(new View.OnClickListener() {
