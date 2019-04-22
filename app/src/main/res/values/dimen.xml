@@ -10,4 +10,6 @@
     <dimen name="reaius">5dp</dimen>
     <dimen name="itemHieght">44dp</dimen>
     <dimen name="marginTabSize">4dp</dimen>
+    <dimen name="albumMarginSize">4dp</dimen>
+    <dimen name="playNumImgSize">18dp</dimen>
 </resources>
