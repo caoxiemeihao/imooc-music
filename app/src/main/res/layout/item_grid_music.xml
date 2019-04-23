@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.atom.imoocmusic.views.WEqualsHImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
@@ -34,7 +34,8 @@
                 android:text="10.00w"
                 android:textSize="@dimen/titleSize"
                 android:textStyle="bold"
-                android:layout_marginLeft="@dimen/albumMarginSize"/>
+                android:layout_marginLeft="@dimen/albumMarginSize"
+                android:textColor="@android:color/white"/>
 
         </LinearLayout>
     </FrameLayout>
