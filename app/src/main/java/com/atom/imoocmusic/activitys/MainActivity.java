@@ -1,11 +1,13 @@
 package com.atom.imoocmusic.activitys;
 
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.atom.imoocmusic.R;
 import com.atom.imoocmusic.adapters.MusicGridAdapter;
+import com.atom.imoocmusic.views.GridSpaceItemDecoration;
 
 public class MainActivity extends BaseActivity {
 
@@ -25,6 +27,8 @@ public class MainActivity extends BaseActivity {
 
         mRvGrid = fd(R.id.rv_grid);
         mRvGrid.setLayoutManager(new GridLayoutManager(MainActivity.this, 3));
+        mRvGrid.addItemDecoration(new GridSpaceItemDecoration(
+                getResources().getDimensionPixelSize(R.dimen.albumMarginSize), mRvGrid));
         mAdapter = new MusicGridAdapter(MainActivity.this);
         mRvGrid.setAdapter(mAdapter);
     }
