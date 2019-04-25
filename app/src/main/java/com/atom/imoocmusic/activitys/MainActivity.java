@@ -1,8 +1,6 @@
 package com.atom.imoocmusic.activitys;
 
-import android.net.MacAddress;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -40,7 +38,7 @@ public class MainActivity extends BaseActivity {
         mRvList = fd(R.id.rv_list);
         mRvList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         mRvList.setNestedScrollingEnabled(false);
-        mListAdapter = new MusicListAdapter(MainActivity.this);
+        mListAdapter = new MusicListAdapter(MainActivity.this, mRvList);
         mRvList.setAdapter(mListAdapter);
     }
 }
