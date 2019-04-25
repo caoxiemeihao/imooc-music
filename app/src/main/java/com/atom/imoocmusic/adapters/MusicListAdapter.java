@@ -6,9 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.atom.imoocmusic.R;
+import com.bumptech.glide.Glide;
 
 public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.ViewHolder> {
 
@@ -16,6 +18,7 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
     private View mItemView;
     private RecyclerView mRv;
     private boolean isCalculationRvHeight;
+    private String imgUrl = "https://y.gtimg.cn/music/photo_new/T002R300x300M000003w7iL42J7TjH.jpg?max_age=2592000";
 
     public  MusicListAdapter(Context context, RecyclerView recyclerView) {
         mContext = context;
@@ -32,6 +35,10 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         setRecyclerViewHeight();
+
+        Glide.with(mContext)
+                .load(imgUrl)
+                .into(viewHolder.ivCion);
     }
 
     @Override
@@ -59,8 +66,12 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
 
     class ViewHolder extends  RecyclerView.ViewHolder {
 
+        ImageView ivCion;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            ivCion = itemView.findViewById(R.id.iv_icon);
         }
     }
 }

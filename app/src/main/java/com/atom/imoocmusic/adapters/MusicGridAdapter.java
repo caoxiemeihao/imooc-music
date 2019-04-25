@@ -6,11 +6,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.atom.imoocmusic.R;
+import com.bumptech.glide.Glide;
 
 public class MusicGridAdapter extends RecyclerView.Adapter<MusicGridAdapter.ViewHolder> {
+
     private Context mContext;
+    private String imgUrl = "https://y.gtimg.cn/music/photo_new/T002R300x300M000003w7iL42J7TjH.jpg?max_age=2592000";
 
     public MusicGridAdapter (Context context) {
         mContext = context;
@@ -24,7 +28,9 @@ public class MusicGridAdapter extends RecyclerView.Adapter<MusicGridAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
+        Glide.with(mContext)
+                .load(imgUrl)
+                .into(viewHolder.ivIcon);
     }
 
     @Override
@@ -34,8 +40,12 @@ public class MusicGridAdapter extends RecyclerView.Adapter<MusicGridAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        ImageView ivIcon;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            ivIcon = itemView.findViewById(R.id.iv_icon);
         }
     }
 }
