@@ -24,7 +24,8 @@
         <activity android:name=".activitys.RegisterActivity" />
         <activity android:name=".activitys.MeActivity" />
         <activity android:name=".activitys.ChangePassword" />
-        <activity android:name=".activitys.AlbumListActivity"></activity>
+        <activity android:name=".activitys.AlbumListActivity" />
+        <activity android:name=".activitys.PlayMusicActivity"></activity>
     </application>
 
 </manifest>
