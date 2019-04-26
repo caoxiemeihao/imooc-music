@@ -1,6 +1,7 @@
 package com.atom.imoocmusic.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.atom.imoocmusic.R;
+import com.atom.imoocmusic.activitys.AlbumListActivity;
 import com.bumptech.glide.Glide;
 
 public class MusicGridAdapter extends RecyclerView.Adapter<MusicGridAdapter.ViewHolder> {
@@ -31,6 +33,14 @@ public class MusicGridAdapter extends RecyclerView.Adapter<MusicGridAdapter.View
         Glide.with(mContext)
                 .load(imgUrl)
                 .into(viewHolder.ivIcon);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, AlbumListActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -41,9 +51,11 @@ public class MusicGridAdapter extends RecyclerView.Adapter<MusicGridAdapter.View
     class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivIcon;
+        View itemView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.itemView = itemView;
 
             ivIcon = itemView.findViewById(R.id.iv_icon);
         }
