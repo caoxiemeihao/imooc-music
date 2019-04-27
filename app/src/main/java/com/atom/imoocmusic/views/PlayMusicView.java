@@ -6,6 +6,8 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -15,8 +17,11 @@ import com.bumptech.glide.Glide;
 public class PlayMusicView extends FrameLayout {
 
     private Context mContext;
+    private boolean isPlay;
     private View mView;
-    private ImageView mIvIcon;
+    private ImageView mIvIcon, mIvNeedle, mIvPlay;
+
+    private Animation mPlayMusicAnim, mPlayNeedleAnim, mStopNeedleAnim;
 
     public PlayMusicView(Context context) {
         super(context);
@@ -47,8 +52,55 @@ public class PlayMusicView extends FrameLayout {
         mView = LayoutInflater.from(mContext).inflate(R.layout.play_music, this, false);
 
         mIvIcon = mView.findViewById(R.id.iv_icon);
+        mIvNeedle = mView.findViewById(R.id.iv_needle);
+        mIvPlay = mView.findViewById(R.id.iv_play);
+
+        mIvIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trigger();
+            }
+        });
+
+        /**
+         * 1、定义所需动画
+         *     光盘动画
+         *     指针进入光盘动画
+         *     指针离开光盘动画
+         * 2、startAnimation
+         */
+        mPlayMusicAnim = AnimationUtils.loadAnimation(mContext, R.anim.play_music_anim);
+        mPlayNeedleAnim = AnimationUtils.loadAnimation(mContext, R.anim.play_needle_anim);
+        mStopNeedleAnim = AnimationUtils.loadAnimation(mContext, R.anim.stop_needle_anim);
+
+
 
         addView(mView);
+    }
+
+    /** 切换播放状态 */
+    private void trigger() {
+        if (isPlay) {
+            stopMusic();
+        } else {
+            playMusic();
+        }
+    }
+
+    /** 播放音乐 */
+    public void playMusic() {
+        isPlay = true;
+        mIvPlay.setVisibility(View.GONE);
+        mIvIcon.startAnimation(mPlayMusicAnim);
+        mIvNeedle.startAnimation(mPlayNeedleAnim);
+    }
+
+    /** 停止播放 */
+    public void stopMusic() {
+        isPlay = false;
+        mIvPlay.setVisibility(View.VISIBLE);
+        mIvIcon.clearAnimation();
+        mIvNeedle.startAnimation(mStopNeedleAnim);
     }
 
     /**

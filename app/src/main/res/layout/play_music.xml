@@ -25,6 +25,7 @@
             app:civ_border_color="@android:color/black"/>
         
         <ImageView
+            android:id="@+id/iv_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/play_music"
@@ -34,9 +35,10 @@
 
     <!-- 指针 -->
     <ImageView
+        android:id="@+id/iv_needle"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:src="@mipmap/point_right"
+        android:src="@mipmap/needle_right"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="23dp"/>
 

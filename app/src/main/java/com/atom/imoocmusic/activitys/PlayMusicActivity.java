@@ -25,7 +25,8 @@ public class PlayMusicActivity extends BaseActivity {
         setContentView(R.layout.activity_play_music);
 
         // 隐藏 statusBar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         initView();
         Glide.with(this)
@@ -35,6 +36,8 @@ public class PlayMusicActivity extends BaseActivity {
 
         mPlayMusicView = fd(R.id.play_music_view);
         mPlayMusicView.setMusicIcon(imgUrl);
+        // 进入执行播放音乐
+        mPlayMusicView.playMusic();
     }
 
     private void initView() {
