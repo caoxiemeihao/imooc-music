@@ -1,6 +1,7 @@
 package com.atom.imoocmusic.views;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
@@ -12,12 +13,15 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.atom.imoocmusic.R;
+import com.atom.imoocmusic.helps.MediaPlayHelp;
 import com.bumptech.glide.Glide;
 
 public class PlayMusicView extends FrameLayout {
 
     private Context mContext;
     private boolean isPlay;
+    private String mPath;
+    private MediaPlayHelp mMediaPlayHelp;
     private View mView;
     private ImageView mIvIcon, mIvNeedle, mIvPlay;
 
@@ -73,9 +77,9 @@ public class PlayMusicView extends FrameLayout {
         mPlayNeedleAnim = AnimationUtils.loadAnimation(mContext, R.anim.play_needle_anim);
         mStopNeedleAnim = AnimationUtils.loadAnimation(mContext, R.anim.stop_needle_anim);
 
-
-
         addView(mView);
+
+        mMediaPlayHelp = MediaPlayHelp.getInstance(mContext);
     }
 
     /** 切换播放状态 */
@@ -83,16 +87,35 @@ public class PlayMusicView extends FrameLayout {
         if (isPlay) {
             stopMusic();
         } else {
-            playMusic();
+            playMusic(mPath);
         }
     }
 
     /** 播放音乐 */
-    public void playMusic() {
+    public void playMusic(String path) {
+        mPath = path;
         isPlay = true;
         mIvPlay.setVisibility(View.GONE);
         mIvIcon.startAnimation(mPlayMusicAnim);
         mIvNeedle.startAnimation(mPlayNeedleAnim);
+
+        /**
+         * 1、判断点击的音乐是否是已经在播放的音乐
+         * 2、如果是，执行start方法播放
+         * 3、如果不是，执行setPath方法
+         */
+        if (mMediaPlayHelp.getPath() != null && mMediaPlayHelp.getPath().equals(path)) {
+            mMediaPlayHelp.start();       // 继续当前音乐播放
+        } else {
+            mMediaPlayHelp.setPath(path); // 播放新的音乐
+            // 加载回调
+            mMediaPlayHelp.setOnMedaiPlayHelpListener(new MediaPlayHelp.OnMedaiPlayHelpListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mMediaPlayHelp.start();
+                }
+            });
+        }
     }
 
     /** 停止播放 */
@@ -101,6 +124,8 @@ public class PlayMusicView extends FrameLayout {
         mIvPlay.setVisibility(View.VISIBLE);
         mIvIcon.clearAnimation();
         mIvNeedle.startAnimation(mStopNeedleAnim);
+
+        mMediaPlayHelp.pause();
     }
 
     /**
